@@ -54,6 +54,7 @@ try {
 				default:
 					throw new Exception('404 : Méthode non supportée');
 			}
+			break;
 		default:
 			throw new Exception('404 : Méthode non supportée');
 	}
