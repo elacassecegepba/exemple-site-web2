@@ -18,7 +18,7 @@ class BD {
   /** Nom d'utilisateur pour accéder à la BD */
   private const USER = 'root';
   /** Mot de passe pour accéder à la BD */
-  private const PASSWORD = 'root';
+  private const PASSWORD = '';
   /** Autres options de connection. */
   private const OPTIONS = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Lorsque que PDO rencontre une erreur, il lance une exception
