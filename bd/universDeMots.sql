@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS `bd_univers_de_mots`
+
 /* utf8mb4 est nécessaire pour prendre en charge tous les caractères Unicode (English, Français, العربية, 汉语, עִבְרִית, ελληνικά, ភាសាខ្មែរ  et 👌😎😉😍❤️) */
 /* utf8mb4_0900_ai_ci est basée sur les normes Unicode 9.0 et intègre les derniers développements en matière de tri et de comparaison de chaînes de caractères. Elle est "accent-insensitive" (ai) et "case-insensitive" (ci), ce qui signifie que les comparaisons de chaînes ne tiennent pas compte des accents ni de la casse. */
 CREATE DATABASE IF NOT EXISTS `bd_univers_de_mots` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
@@ -24,9 +26,14 @@ Création des tables.
     capable de gérer tous les caractères Unicode.
 */
 
+DROP TABLE IF EXISTS `categories_livres`;
+DROP TABLE IF EXISTS `pages`;
+DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `livres`;
+DROP TABLE IF EXISTS `utilisateurs`;
+
 /* Le mot de passe sera hashé avec password_hash (https://www.php.net/manual/fr/function.password-hash.php). */
 /* La documentation recommande 255 caratères pour stocker le résultat de password_hash dans la BD. */
-DROP TABLE IF EXISTS `utilisateurs`;
 CREATE TABLE `utilisateurs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
@@ -35,7 +42,6 @@ CREATE TABLE `utilisateurs` (
   UNIQUE (`email`)
 );
 
-DROP TABLE IF EXISTS `livres`;
 CREATE TABLE `livres` (
   `id` int NOT NULL AUTO_INCREMENT,
   `utilisateurs_id` int NOT NULL,
@@ -48,14 +54,12 @@ CREATE TABLE `livres` (
   UNIQUE (`dossier`)
 );
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `categorie` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `categories_livres`;
 CREATE TABLE `categories_livres` (
   `id` int NOT NULL AUTO_INCREMENT,
   `livres_id` int NOT NULL,
@@ -65,7 +69,6 @@ CREATE TABLE `categories_livres` (
   FOREIGN KEY (categories_id) REFERENCES categories(id)
 );
 
-DROP TABLE IF EXISTS `pages`;
 CREATE TABLE `pages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `livres_id` int NOT NULL,
