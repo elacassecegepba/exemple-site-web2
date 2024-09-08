@@ -12,30 +12,11 @@
       <!-- Éléments du menu à gauche -->
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link <?php NavClass("/livres"); ?>" href="index.php?ressource=/livres">Livres</a>
+          <a class="nav-link <?php NavClass("/formulaire"); ?>" href="index.php?ressource=/formulaire">Formulaire</a>
         </li>
       </ul>
       <!-- Éléments du menu à droite -->
       <ul class="navbar-nav">
-        <?php if (!isset($_SESSION['utilisateur'])) { ?>
-          <li class="nav-item">
-            <a class="nav-link <?php NavClass("/connexion"); ?>" href="index.php?ressource=/connexion">Connexion</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link <?php NavClass("/inscription"); ?>" href="index.php?ressource=/inscription">Inscription</a>
-          </li>
-        <?php } else { ?>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <?php out($_SESSION['utilisateur']['email']) ?>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="index.php?ressource=/utilisateurs/moi/livres">Vos livres</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="index.php?ressource=/deconnexion">Déconnexion</a></li>
-            </ul>
-          </li>
-        <?php } ?>
       </ul>
     </div>
   </div>
