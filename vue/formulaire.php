@@ -1,11 +1,17 @@
-<?php $titreOnglet = 'Formualire'; ?>
-
+<?php $titreOnglet = 'Formulaire'; ?>
 <?php ob_start(); ?>
 
-<h1 class="text-center">Exemple d'un formulaire simple.</h1>
-
 <div class="mx-auto col-md-8 col-lg-6">
-
+  <?php if (isset($_SESSION['valeurFormulaire'])) { ?>
+    <div class="alert alert-info" role="alert">
+    Dernière valeur : <em><?php echo htmlspecialchars($_SESSION['valeurFormulaire']); ?></em>
+    </div>
+  <?php } else { ?>
+    <div class="alert alert-dark" role="alert">
+      La variable de session n'a pas encore été crée.
+    </div>
+  <?php } ?>
+  
   <?php if (isset($_GET["erreur"])) { ?>
     <div class="alert alert-danger" role="alert">
       <?php out($_GET["erreur"]); ?>
@@ -34,9 +40,7 @@
 
     <button type="submit" class="btn btn-primary">Soumettre</button>
   </form>
-
 </div>
 
 <?php $contenu = ob_get_clean(); ?>
-
 <?php require 'vue/gabarit.php'; ?>

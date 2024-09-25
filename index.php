@@ -14,7 +14,7 @@ session_start();
 
 require 'utils/utils.php';
 require 'controleur/controleur.php';
-require 'controleur/controleurFormulaire.php';
+require 'controleur/controleurSession.php';
 
 // ************************************************
 // Vous n'avez rien à modifier dans le try catch
@@ -76,8 +76,14 @@ function gererRequetesGet()
 		case '/':
 			afficherAccueil();
 			break;
+		case '/compteur':
+			afficherPageCompteur();
+			break;
 		case '/formulaire':
 			afficherPageFormulaire();
+			break;
+		case '/detruire-session':
+			detruireSession();
 			break;
 		default:
 			throw new Exception("404 : La page que vous recherchez n'existe pas");
@@ -88,7 +94,7 @@ function gererRequetesPost()
 {
 	switch ($_GET['ressource']) {
 		case '/formulaire':
-			ajouterElementFormulaire();
+			ajouterValeurFormulaire();
 			break;
 		default:
 			throw new Exception("404 : Impossible d'ajouter ce type de ressource");

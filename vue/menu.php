@@ -12,11 +12,17 @@
       <!-- Éléments du menu à gauche -->
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
+          <a class="nav-link <?php NavClass("/compteur"); ?>" href="index.php?ressource=/compteur">Compteur</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link <?php NavClass("/formulaire"); ?>" href="index.php?ressource=/formulaire">Formulaire</a>
         </li>
       </ul>
       <!-- Éléments du menu à droite -->
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-danger <?php NavClass("/detruire-session"); ?>" href="index.php?ressource=/detruire-session">Détruire session</a>
+        </li>
       </ul>
     </div>
   </div>
