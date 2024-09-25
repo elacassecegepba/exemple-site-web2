@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Navigation principale">
   <div class="container">
     <a class="navbar-brand" href="index.php?ressource=/">
-      <img src="public/image/univers-de-mots-64x64.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      <img src="public/image/logo-64x64.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
       Univers de Mots
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">

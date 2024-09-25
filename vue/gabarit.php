@@ -9,7 +9,7 @@
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- Favicon -->
-  <link rel="icon" href="public/image/univers-de-mots-64x64.png" type="image/jpg">
+  <link rel="icon" href="public/image/logo-64x64.png" type="image/jpg">
   <!-- CSS Maison (on en fait seulement si Bootstrap ne le permet pas) -->
   <link href="public/style/index.css" rel="stylesheet">
 </head>
