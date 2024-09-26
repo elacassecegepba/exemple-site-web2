@@ -13,12 +13,8 @@ session_start();
 // ************************************************
 
 require 'utils/utils.php';
-require 'utils/televersementUtils.php';
-require 'utils/telechargementUtils.php';
 require 'controleur/controleur.php';
-require 'controleur/controleurLivre.php';
-require 'controleur/controleurPage.php';
-require 'controleur/controleurUtilisateur.php';
+require 'controleur/controleurPays.php';
 
 // ************************************************
 // Vous n'avez rien à modifier dans le try catch
@@ -80,32 +76,11 @@ function gererRequetesGet()
 		case '/':
 			afficherAccueil();
 			break;
-		case '/livres':
-			afficherLivres();
+		case '/provinces':
+			afficherProvinces();
 			break;
-		case '/livres/{id}':
-			afficherLivreParId();
-			break;
-		case '/livres/{id}/couverture':
-			telechargerCouvertureLivreParId();
-			break;
-		case '/pages/{id}':
-			telechargerPagesParId();
-			break;
-		case '/utilisateurs/moi/livres':
-			afficherLivresUtilisateurConnecte();
-			break;
-		case '/publier-livre':
-			afficherPublierLivre();
-			break;
-		case '/connexion':
-			afficherConnexion();
-			break;
-		case '/inscription':
-			afficherInscription();
-			break;
-		case '/deconnexion':
-			deconnecterUtilisateur();
+		case '/pays/{code_pays}/provinces':
+			afficherProvincesSelonCodePays();
 			break;
 		default:
 			throw new Exception('404 : La page que vous recherchez n\'existe pas');
@@ -115,15 +90,6 @@ function gererRequetesGet()
 function gererRequetesPost()
 {
 	switch ($_GET['ressource']) {
-		case '/inscription':
-			inscrireUtilisateur();
-			break;
-		case '/connexion':
-			connecterUtilisateur();
-			break;
-		case '/livres':
-			ajouterLivre();
-			break;
 		default:
 			throw new Exception('404 : Impossible d\'ajouter ce type de ressource');
 	}

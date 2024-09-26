@@ -1,3 +1,14 @@
-# Univers de mots
+# Exemple BD
 
-Exemple de site web utilisant les notions vues dans le cours de développement web 2.
+## Fichiers importants
+- Controleur
+  - [controleurPays](controleur/controleurPays.php)
+- Modèle
+  - [modelePays](modele/modelePays.php)
+  - [modeleProvinces](modele/modeleProvinces.php)
+- Vue
+  - [listeProvinces](vue/listeProvinces.php)
+  - [listePays](vue/listePays.php)
+- BD
+  - [bd](bd/bd.php)
+  - [bdMondial](bd/bdMondial.sql)
