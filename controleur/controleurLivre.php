@@ -155,7 +155,6 @@ function ajouterLivre()
     header('Location: index.php?ressource=/publier-livre&erreur=' . $msgErreur);
     return;
   }
-  //removeDir($cheminVersImagesLivre['chemin']);
 
   $idLivre = ModeleLivres::AjouterLivres($_SESSION['utilisateur']['id'], $_POST['titre'], $_POST['description'], $infosImageCouverture[0]['nomComplet'], $cheminVersImagesLivre['nom'] . '/');
   for ($i = 0; $i < sizeof($_POST['categories']); $i++) {
