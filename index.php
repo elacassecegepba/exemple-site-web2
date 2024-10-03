@@ -22,10 +22,15 @@ require 'controleur/controleurPays.php';
 
 try {
 	// .htaccess envoie toutes les requêtes à index.php sauf pour ce qui est dans le dossier public (js, css, image, etc.).
-	// Si la requête n'a pas été faite à index.php, on redirige vers index.php.
-	if (strpos($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']) !== 0) {
-		$redirigerVers = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
-		header('Location: ' . $redirigerVers);
+	// Cependant l'URL dans le navigateur de l'utilisateur reste la mauvaise.
+	// Donc, si la requête n'a pas été faite à index.php, on redirige vers index.php.
+	$urlVersIndex = str_replace($_SERVER['DOCUMENT_ROOT'], "", str_replace("\\", "/", __FILE__));
+
+	if (isset($_SERVER["REDIRECT_URL"]) && $_SERVER["REDIRECT_URL"] !== $urlVersIndex) {
+		$urlAbsolueDeIndex = $_SERVER["HTTP_HOST"] . $urlVersIndex;
+		$parametresGET = !empty($_SERVER["QUERY_STRING"]) ? '?' . $_SERVER["QUERY_STRING"] : "";
+		$urlRedirectionAbsolue = $_SERVER["REQUEST_SCHEME"] . '://' . $urlAbsolueDeIndex . $parametresGET;
+		header('Location: ' . $urlRedirectionAbsolue);
 		return;
 	}
 
@@ -35,7 +40,7 @@ try {
 			break;
 		case 'POST':
 			if (!isset($_GET['methode'])) {
-				throw new Exception('404 : Veuillez spécifier la méthode');
+				throw new Exception("404 : Veuillez spécifier la méthode");
 			}
 			switch (strtoupper($_GET['methode'])) {
 				case "POST":
@@ -48,11 +53,11 @@ try {
 					gererRequetesDelete();
 					break;
 				default:
-					throw new Exception('404 : Méthode non supportée');
+					throw new Exception("404 : Méthode non supportée");
 			}
 			break;
 		default:
-			throw new Exception('404 : Méthode non supportée');
+			throw new Exception("404 : Méthode non supportée");
 	}
 } catch (PDOException $ex) {
 	$msgErreur = $ex->getMessage();
@@ -83,30 +88,42 @@ function gererRequetesGet()
 			afficherProvincesSelonCodePays();
 			break;
 		default:
-			throw new Exception('404 : La page que vous recherchez n\'existe pas');
+			throw new Exception("404 : La page que vous recherchez n'existe pas");
 	}
 }
 
 function gererRequetesPost()
 {
+	if (!isset($_GET['ressource'])) {
+		throw new Exception("404 : Veuillez spécifier la ressource à ajouter");
+	}
+
 	switch ($_GET['ressource']) {
 		default:
-			throw new Exception('404 : Impossible d\'ajouter ce type de ressource');
+			throw new Exception("404 : Impossible d'ajouter ce type de ressource");
 	}
 }
 
 function gererRequetesPut()
 {
+	if (!isset($_GET['ressource'])) {
+		throw new Exception("404 : Veuillez spécifier la ressource à modifier");
+	}
+
 	switch ($_GET['ressource']) {
 		default:
-			throw new Exception('404 : Impossible de modifier ce type de ressource');
+			throw new Exception("404 : Impossible de modifier ce type de ressource");
 	}
 }
 
 function gererRequetesDelete()
 {
+	if (!isset($_GET['ressource'])) {
+		throw new Exception("404 : Veuillez spécifier la ressource à supprimer");
+	}
+
 	switch ($_GET['ressource']) {
 		default:
-			throw new Exception('404 : Impossible de supprimer ce type de ressource');
+			throw new Exception("404 : Impossible de supprimer ce type de ressource");
 	}
 }
