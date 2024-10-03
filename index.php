@@ -22,10 +22,15 @@ require 'controleur/controleurFormulaire.php';
 
 try {
 	// .htaccess envoie toutes les requêtes à index.php sauf pour ce qui est dans le dossier public (js, css, image, etc.).
-	// Si la requête n'a pas été faite à index.php, on redirige vers index.php.
-	if (strpos($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']) !== 0) {
-		$redirigerVers = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'];
-		header('Location: ' . $redirigerVers);
+	// Cependant l'URL dans le navigateur de l'utilisateur reste la mauvaise.
+	// Donc, si la requête n'a pas été faite à index.php, on redirige vers index.php.
+	$urlVersIndex = str_replace($_SERVER['DOCUMENT_ROOT'], "", str_replace("\\", "/", __FILE__));
+
+	if (isset($_SERVER["REDIRECT_URL"]) && $_SERVER["REDIRECT_URL"] !== $urlVersIndex) {
+		$urlAbsolueDeIndex = $_SERVER["HTTP_HOST"] . $urlVersIndex;
+		$parametresGET = !empty($_SERVER["QUERY_STRING"]) ? '?' . $_SERVER["QUERY_STRING"] : "";
+		$urlRedirectionAbsolue = $_SERVER["REQUEST_SCHEME"] . '://' . $urlAbsolueDeIndex . $parametresGET;
+		header('Location: ' . $urlRedirectionAbsolue);
 		return;
 	}
 
@@ -48,11 +53,11 @@ try {
 					gererRequetesDelete();
 					break;
 				default:
-					throw new Exception('404 : Méthode non supportée');
+					throw new Exception("404 : Méthode non supportée");
 			}
 			break;
 		default:
-			throw new Exception('404 : Méthode non supportée');
+			throw new Exception("404 : Méthode non supportée");
 	}
 } catch (PDOException $ex) {
 	$msgErreur = $ex->getMessage();
@@ -86,6 +91,10 @@ function gererRequetesGet()
 
 function gererRequetesPost()
 {
+	if (!isset($_GET['ressource'])) {
+		throw new Exception("404 : Veuillez spécifier la ressource à ajouter");
+	}
+
 	switch ($_GET['ressource']) {
 		case '/formulaire':
 			ajouterElementFormulaire();
@@ -97,6 +106,10 @@ function gererRequetesPost()
 
 function gererRequetesPut()
 {
+	if (!isset($_GET['ressource'])) {
+		throw new Exception("404 : Veuillez spécifier la ressource à modifier");
+	}
+
 	switch ($_GET['ressource']) {
 		default:
 			throw new Exception("404 : Impossible de modifier ce type de ressource");
@@ -105,6 +118,10 @@ function gererRequetesPut()
 
 function gererRequetesDelete()
 {
+	if (!isset($_GET['ressource'])) {
+		throw new Exception("404 : Veuillez spécifier la ressource à supprimer");
+	}
+
 	switch ($_GET['ressource']) {
 		default:
 			throw new Exception("404 : Impossible de supprimer ce type de ressource");
