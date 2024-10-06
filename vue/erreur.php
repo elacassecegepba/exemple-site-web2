@@ -4,7 +4,7 @@
 <?php ob_start(); ?>
 
 <div class="text-center">
-  <h1>Une erreur est survenue :</h1>
+  <h1>Une erreur est survenue&nbsp;:</h1>
   <p><?php out($msgErreur); ?></p>
 </div>
 
