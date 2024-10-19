@@ -12,7 +12,7 @@
       <!-- Éléments du menu à gauche -->
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link <?php NavClass("/chronometre"); ?>" href="index.php?ressource=/chronometre">Chronomètre</a>
+          <a class="nav-link <?php NavClass("/page-messages"); ?>" href="index.php?ressource=/page-messages">Messages</a>
         </li>
       </ul>
       <!-- Éléments du menu à droite -->

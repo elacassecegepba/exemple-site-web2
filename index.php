@@ -14,6 +14,7 @@ session_start();
 
 require 'utils/utils.php';
 require 'controleur/controleur.php';
+require 'controleur/controleurMessages.php';
 
 // ************************************************
 // Vous n'avez rien à modifier dans le try catch
@@ -83,8 +84,11 @@ function gererRequetesGet()
 		case '/':
 			afficherAccueil();
 			break;
-		case '/chronometre':
-			afficherChronometre();
+		case '/page-messages':
+			afficherPageMessages();
+			break;
+		case '/autres-messages':
+			afficherAutresMessages();
 			break;
 		default:
 			throw new Exception("404 : La page que vous recherchez n'existe pas");

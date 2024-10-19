@@ -1,6 +1,6 @@
 <?php $titreOnglet = 'Erreur'; ?>
 
-<?php // Tout ce qui se trouve entre ob_start et ob_get_clean n'est pas affiché à l'écran, mais retourné par ob_get_clean. ?>
+<?php http_response_code(400); // Ajout pour pouvoir détecter l'erreur avec AJAX ?>
 <?php ob_start(); ?>
 
 <div class="text-center">
@@ -8,7 +8,6 @@
   <p><?php out($msgErreur); ?></p>
 </div>
 
-<?php // $contenu sera utilisé par vue/gabarit.php ?>
 <?php $contenu = ob_get_clean(); ?>
 
 <?php require 'vue/gabarit.php'; ?>
