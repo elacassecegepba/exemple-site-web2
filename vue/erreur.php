@@ -1,6 +1,10 @@
 <?php $titreOnglet = 'Erreur'; ?>
 
-<?php http_response_code(400); // Ajout pour pouvoir détecter l'erreur avec AJAX ?>
+<?php
+  if (http_response_code() === 200) {
+    http_response_code(400);
+  }
+?>
 <?php ob_start(); ?>
 
 <div class="text-center">

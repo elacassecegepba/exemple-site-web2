@@ -13,8 +13,10 @@ session_start();
 // ************************************************
 
 require 'utils/utils.php';
+require 'utils/utilsTelechargementFichier.php';
+require 'utils/utilsTeleversementFichier.php';
 require 'controleur/controleur.php';
-require 'controleur/controleurMessages.php';
+require 'controleur/controleurFichiers.php';
 
 // ************************************************
 // Vous n'avez rien à modifier dans le try catch
@@ -84,11 +86,14 @@ function gererRequetesGet()
 		case '/':
 			afficherAccueil();
 			break;
-		case '/page-messages':
-			afficherPageMessages();
+		case '/formulaire-image' :
+			afficherFormulaireImage();
 			break;
-		case '/autres-messages':
-			afficherAutresMessages();
+		case '/afficher-image/{id_image}':
+			afficherImage();
+			break;
+		case '/images/{id_image}':
+			telechargerImage();
 			break;
 		default:
 			throw new Exception("404 : La page que vous recherchez n'existe pas");
@@ -102,6 +107,9 @@ function gererRequetesPost()
 	}
 
 	switch ($_GET['ressource']) {
+		case '/images':
+			televerserImage();
+			break;
 		default:
 			throw new Exception("404 : Impossible d'ajouter ce type de ressource");
 	}

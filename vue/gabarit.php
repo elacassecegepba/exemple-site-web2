@@ -18,7 +18,7 @@
 
 <body class="d-flex flex-column vh-100 bg-light bg-gradient">
   <header class="bg-dark"><?php require_once 'vue/menu.php'; ?></header>
-  <main class="container pt-2 flex-fill"><?php echo $contenu ?></main>
+  <main class="container pt-2 flex-fill d-flex flex-column"><?php echo $contenu ?></main>
   <footer><?php require_once 'vue/pied.php'; ?></footer>
 
   <!-- Bootstrap 5 JS -->

@@ -12,11 +12,16 @@
       <!-- Éléments du menu à gauche -->
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link <?php NavClass("/page-messages"); ?>" href="index.php?ressource=/page-messages">Messages</a>
+          <a class="nav-link <?php NavClass("/formulaire-image"); ?>" href="index.php?ressource=/formulaire-image">Formulaire image</a>
         </li>
       </ul>
       <!-- Éléments du menu à droite -->
       <ul class="navbar-nav">
+        <form class="d-flex" action="index.php">
+          <input type="hidden" name="ressource" value="/afficher-image/{id_image}">
+          <input class="form-control me-2" type="search" name="id_image" placeholder="Id de l'image" style="width: 9rem;">
+          <button class="btn btn-outline-success" type="submit">Afficher&nbsp;Image</button>
+        </form>
       </ul>
     </div>
   </div>
