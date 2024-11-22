@@ -1,11 +1,17 @@
 <?php $titreOnglet = 'Accueil'; ?>
 
-<?php // Tout ce qui se trouve entre ob_start et ob_get_clean n'est pas affiché à l'écran, mais retourné par ob_get_clean. ?>
 <?php ob_start(); ?>
 
-<h1 class="text-center">Bienvenue dans Univers de Mots!</h1>
+<h1 class="text-center">Exemple Synchronisation état client avec serveur</h1>
 
-<?php // $contenu sera utilisé par vue/gabarit.php ?>
+<?php require 'vue/formulaireAjoutMessage.php' ?>
+
+<div id="messages" class="row mt-2">
+    <?php afficherMessages(); ?>
+</div>
+
+<script src="public/js/messages.js"></script>
+
 <?php $contenu = ob_get_clean(); ?>
 
 <?php require 'vue/gabarit.php'; ?>

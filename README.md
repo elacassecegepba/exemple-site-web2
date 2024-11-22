@@ -1,3 +1,5 @@
 # Exemple
 
-Exemple de site web utilisant les notions vues dans le cours de développement web 2.
+Exemple de site de messagerie simple utilisant JavaScript pour maintenir les clients synchronisés.
+
+Voir [public/js/messages.js](public/js/messages.js)
